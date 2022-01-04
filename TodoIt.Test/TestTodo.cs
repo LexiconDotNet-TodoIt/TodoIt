@@ -1,4 +1,4 @@
-﻿using TodoIt.Model;
+﻿using TodoIt;
 using Xunit;
 
 namespace TodoIt.Test
@@ -7,7 +7,7 @@ namespace TodoIt.Test
     {
         [Theory]
         [InlineData(0, "Description one", true)]
-        [InlineData(1, "Description two", true)]
+        [InlineData(1, "Description two", false)]
         public void TestGetSetProperties(
             int id, string description, bool done)
         {
@@ -18,7 +18,7 @@ namespace TodoIt.Test
             Assert.Equal(id, todo.TodoId);
             Assert.NotNull(todo.Decription);
             Assert.Equal(description, todo.Decription);
-            Assert.True(todo.Done);
+            Assert.Equal(done, todo.Done);
             Assert.NotNull(todo.Assignee);
         }
     }
