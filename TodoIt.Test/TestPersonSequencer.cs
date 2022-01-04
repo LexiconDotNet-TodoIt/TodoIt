@@ -6,6 +6,11 @@ namespace TodoIt.Test
 
     public class TestPersonSequencer
     {
+        public TestPersonSequencer()
+        {
+            PersonSequencer.Reset();
+        }
+
         [Fact]
         public void TestPersonId()
         {
