@@ -1,15 +1,11 @@
 ﻿using System;
+using System.Linq;
 
 namespace TodoIt
 {
     public class People
     {
-        private static Person[] people;
-
-        public People()
-        {
-            this.Clear();
-        }
+        private static Person[] people = new Person[0];
 
         public int Size()
         {
@@ -23,17 +19,15 @@ namespace TodoIt
 
         public Person FindById(int personId)
         {
-            Person personToFind = null;
-
             foreach (var person in people)
             {
                 if (person.PersonId == personId)
                 {
-                    personToFind = person;
+                    return person;
                 }
             }
 
-            return personToFind;
+            return null;
         }
 
         public Person CreatePerson(string firstName, string lastName)
@@ -43,12 +37,9 @@ namespace TodoIt
                 firstName, 
                 lastName);
 
-            Array.Resize(ref people, Size() + 1);
-
-            people[Size() - 1] = personToCreate;
+            people = people.Append(personToCreate).ToArray();
 
             return personToCreate;
-
         }
 
         public void Clear()
