@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
-using TodoIt;
-
+﻿
 namespace TodoIt.Test
 {
 
-    public class TestSeqvencer
+    using Xunit;
+
+    public class TestPersonSequencer
     {
         [Fact]
         public void TestPersonId()
         {
             int result = 0;
-            int id = Data.PersonSeqvencer.NextPersonId();
+            int id = PersonSequencer.NextPersonId();
             Assert.Equal(id, result);
 
-            id = Data.PersonSeqvencer.NextPersonId();
+            id = PersonSequencer.NextPersonId();
             result = 1;
             Assert.Equal(id, result);
         }
@@ -27,8 +24,8 @@ namespace TodoIt.Test
             int result = 0;
             int id;
 
-            Data.PersonSeqvencer.Reset();
-            id = Data.PersonSeqvencer.NextPersonId();
+            PersonSequencer.Reset();
+            id = PersonSequencer.NextPersonId();
 
             Assert.Equal(id, result);
         }

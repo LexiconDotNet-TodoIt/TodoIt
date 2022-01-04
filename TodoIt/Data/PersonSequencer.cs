@@ -1,9 +1,9 @@
 ﻿using System;
 
 
-namespace TodoIt.Data
+namespace TodoIt
 {
-	public class PersonSeqvencer
+	public class PersonSequencer
 	{
 		private static int personId = 0;
 
