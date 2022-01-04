@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Linq;
 
 namespace TodoIt
 {
-    internal class TodoItems
+    public class TodoItems
     {
         private static Todo[] todoItems = new Todo[0];
 
@@ -13,39 +14,28 @@ namespace TodoIt
 
         public Todo[] FindAll()
         {
-            Todo[] todoItemsToFind = new Todo[todoItems.Length];
-            todoItems.CopyTo(todoItemsToFind, 0);
-
-            return todoItemsToFind; 
+            return todoItems;
         }
 
         public Todo FindById(int todoId)
         {
-            Todo todo = null;
-            foreach (Todo item in todoItems)
-            { 
-                if(item.TodoId == todoId)
-                    todo = item;    
-            }
-            if (todo == null)
-                throw new Exception("Hitta inget element");
+            foreach (Todo todo in todoItems)
+                if (todo.TodoId == todoId)
+                    return todo;
 
-            return todo;
+            throw new Exception("No Todo with that Id found.");
         }
 
         public Todo AddTodo(string description)
         {
             Todo todo = new Todo(TodoSequencer.NextTodoId(), description);
-            Todo []tempArray = new Todo[Size() + 1];
-            todoItems.CopyTo(tempArray, 0);
-            tempArray[tempArray.Length] = todo;
-            todoItems = tempArray;
+            todoItems = todoItems.Append<Todo>(todo).ToArray();
             return todo;
         }
+
         public void Clear()
         {
             todoItems = new Todo[0];
         }
-
     }
 }
