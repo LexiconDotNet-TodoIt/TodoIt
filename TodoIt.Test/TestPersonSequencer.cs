@@ -14,13 +14,10 @@ namespace TodoIt.Test
         [Fact]
         public void TestPersonId()
         {
-            int result = 0;
-            int id = PersonSequencer.NextPersonId();
-            Assert.Equal(id, result);
-
-            id = PersonSequencer.NextPersonId();
-            result = 1;
-            Assert.Equal(id, result);
+            int resultOne = PersonSequencer.NextPersonId();
+            int resultTwo = PersonSequencer.NextPersonId();
+            Assert.Equal(0, resultOne);
+            Assert.Equal(1, resultTwo);
         }
 
         [Fact]
