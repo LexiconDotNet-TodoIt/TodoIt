@@ -7,17 +7,27 @@ namespace TodoIt.Test
 {
     public class TestTodoItems
     {
-        private readonly TodoItems todoItems;
+        private readonly TodoItems todoItems1;
+        private readonly TodoItems todoItems2;
         private readonly int size;
 
         public TestTodoItems()
         {
             TodoSequencer.Reset();
             
-            todoItems = new TodoItems();
-            todoItems.Clear();
+            todoItems1 = new TodoItems();
+            todoItems2 = new TodoItems();
 
-            size = 5;
+            todoItems1.Clear();
+
+            size = 6;
+            MassAdd(size / 2, todoItems1);
+            MassAdd(size / 2, todoItems2);
+            
+        }
+
+        private void MassAdd(int size, TodoItems todoItems)
+        {
             for (int i = 0; i < size; i++)
                 todoItems.AddTodo($"Todo {i}");
         }
@@ -25,44 +35,44 @@ namespace TodoIt.Test
         [Fact]
         public void TestSize()
         {
-            Assert.Equal(size, todoItems.Size());
+            Assert.Equal(size, todoItems1.Size());
+            Assert.Equal(size, todoItems2.Size());
         }
 
         [Fact]
         public void TestReturnAllAndFindById()
         {
-            Todo[] todos = todoItems.FindAll();
+            Todo[] todos = todoItems1.FindAll();
 
             for (int i = 0; i < todos.Length; i++)
             {
-                Assert.Equal(todos[i], todoItems.FindById(i));
+                Assert.Equal(todos[i], todoItems1.FindById(i));
             }
         }
 
         [Fact]
-        public void TestAddToDo()
+        public void TestAddTodo()
         {
             string expected = "Description";
-            todoItems.AddTodo(expected);
+            todoItems1.AddTodo(expected);
 
             Assert.Equal(
                 expected,
-                todoItems.FindById(todoItems.Size() - 1).Decription);
+                todoItems1.FindById(todoItems1.Size() - 1).Decription);
         }
 
         [Fact]
         public void TestClear()
         {
-            todoItems.Clear();
+            todoItems1.Clear();
 
-            Assert.Equal(0, todoItems.Size());
+            Assert.Equal(0, todoItems1.Size());
         }
 
         [Fact]
-        public void TestArrayStatic()
+        public void TestFindByIdThrowsException()
         {
-            Todo
+            Assert.Throws<Exception>(() => todoItems1.FindById(100));
         }
-
     }
 }
