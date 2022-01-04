@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using Xunit;
 
 namespace TodoIt.Test
@@ -20,6 +21,7 @@ namespace TodoIt.Test
 
             todoItems1.Clear();
 
+            // size must be even
             size = 6;
             MassAdd(size / 2, todoItems1);
             MassAdd(size / 2, todoItems2);
@@ -73,6 +75,39 @@ namespace TodoIt.Test
         public void TestFindByIdThrowsException()
         {
             Assert.Throws<Exception>(() => todoItems1.FindById(100));
+        }
+
+        [Fact]
+        public void TestFindByDoneStatus()
+        {
+            for (int i = 0; i < size / 2; i++)
+            {
+                todoItems1.FindById(i).Done = true;
+            }
+
+            Todo[] done = todoItems1.FindByDoneStatus(true);
+            Todo[] open = todoItems1.FindByDoneStatus(false);
+
+            Assert.Equal(done.Length, size / 2);
+            Assert.Equal(open.Length, size / 2);
+        }
+
+        [Fact]
+        public void TestFindByAssignee()
+        {
+            People people = new People();
+            people.CreatePerson("a", "b");
+            people.CreatePerson("c", "d");
+
+            todoItems1.FindById(0).Assignee = people.FindById(0);
+            todoItems1.FindById(1).Assignee = people.FindById(0);
+            todoItems1.FindById(2).Assignee = people.FindById(1);
+
+            Todo[] assignee0 = todoItems1.FindByAssignee(people.FindById(0));
+            Todo[] assignee1 = todoItems1.FindByAssignee(1);
+
+            Assert.Equal(2, assignee0.Length);
+            Assert.Single(assignee1);
         }
     }
 }
