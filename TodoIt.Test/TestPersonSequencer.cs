@@ -1,9 +1,7 @@
-﻿
+﻿using Xunit;
+
 namespace TodoIt.Test
 {
-
-    using Xunit;
-
     public class TestPersonSequencer
     {
         public TestPersonSequencer()
