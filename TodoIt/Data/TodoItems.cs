@@ -70,5 +70,16 @@ namespace TodoIt
 
             return todos;
         }
+
+        public Todo[] FindUnassignedTodoItems()
+        {
+            Todo[] todos = new Todo[0];
+
+            foreach (Todo todo in todoItems)
+                if (todo.Assignee != null)
+                    todos = todos.Append<Todo>(todo).ToArray();
+
+            return todos;
+        }
     }
 }

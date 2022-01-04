@@ -6,11 +6,13 @@ using Xunit;
 
 namespace TodoIt.Test
 {
-    public class TestTodoItems
+    [Collection("Sequential")]
+    public class TestTodoItems : IDisposable
     {
         private readonly TodoItems todoItems1;
         private readonly TodoItems todoItems2;
         private readonly int size;
+        private readonly People people;
 
         public TestTodoItems()
         {
@@ -25,7 +27,21 @@ namespace TodoIt.Test
             size = 6;
             MassAdd(size / 2, todoItems1);
             MassAdd(size / 2, todoItems2);
-            
+
+            people = new People();
+            people.CreatePerson("a", "b");
+            people.CreatePerson("c", "d");
+
+            todoItems1.FindById(0).Assignee = people.FindById(0);
+            todoItems1.FindById(1).Assignee = people.FindById(0);
+            todoItems1.FindById(2).Assignee = people.FindById(1);
+        }
+
+        public void Dispose() 
+        {
+            people.Clear();
+            PersonSequencer.Reset();
+            TodoSequencer.Reset();
         }
 
         private void MassAdd(int size, TodoItems todoItems)
@@ -95,19 +111,19 @@ namespace TodoIt.Test
         [Fact]
         public void TestFindByAssignee()
         {
-            People people = new People();
-            people.CreatePerson("a", "b");
-            people.CreatePerson("c", "d");
-
-            todoItems1.FindById(0).Assignee = people.FindById(0);
-            todoItems1.FindById(1).Assignee = people.FindById(0);
-            todoItems1.FindById(2).Assignee = people.FindById(1);
-
             Todo[] assignee0 = todoItems1.FindByAssignee(people.FindById(0));
             Todo[] assignee1 = todoItems1.FindByAssignee(1);
 
             Assert.Equal(2, assignee0.Length);
             Assert.Single(assignee1);
+        }
+
+        [Fact]
+        public void TestFindUnassignedTodoItems()
+        {
+            Todo[] unassigned = todoItems1.FindUnassignedTodoItems();
+
+            Assert.Equal(3, unassigned.Length);
         }
     }
 }
