@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TodoIt
 {
@@ -23,10 +21,10 @@ namespace TodoIt
         }
 
         public string FirstName
-        { 
+        {
             get { return firstName; }
-            set 
-            {  
+            set
+            {
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentException();
 
