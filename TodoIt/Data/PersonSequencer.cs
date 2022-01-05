@@ -1,21 +1,18 @@
-﻿using System;
-
-
-namespace TodoIt
+﻿namespace TodoIt
 {
-	public class PersonSequencer
-	{
-		private static int personId = 0;
+    public class PersonSequencer
+    {
+        private static int personId = 0;
 
-		public static int NextPersonId()
+        public static int NextPersonId()
         {
-			return personId++;
+            return personId++;
         }
 
-		public static void Reset()
-		{ 
-			personId = 0;
-		}
-	}
+        public static void Reset()
+        {
+            personId = 0;
+        }
+    }
 }
 

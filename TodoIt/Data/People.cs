@@ -34,7 +34,7 @@ namespace TodoIt
         {
             Person personToCreate = new Person(
                 PersonSequencer.NextPersonId(),
-                firstName, 
+                firstName,
                 lastName);
 
             people = people.Append(personToCreate).ToArray();
