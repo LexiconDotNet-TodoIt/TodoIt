@@ -127,14 +127,12 @@ namespace TodoIt.Test
         [Fact]
         public void TestRemoveTodoItems()
         {
-            object objectToFind = null;
             string itemToFind = "find"; 
 
             todoItems1.AddTodo(itemToFind);
             Todo todoToRemove = todoItems1.FindAll().Last();
-            objectToFind = todoToRemove;
-
-            todoItems1.Remove(objectToFind);
+            
+            todoItems1.Remove(todoToRemove);
 
             Assert.Throws<Exception>(() => todoItems1.FindById(todoToRemove.TodoId));
 
