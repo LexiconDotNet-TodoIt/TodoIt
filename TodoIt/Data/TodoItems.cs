@@ -81,5 +81,14 @@ namespace TodoIt
 
             return todos;
         }
+
+        public void Remove(object todoItem) 
+        {
+            if (todoItem == null)
+                throw new ArgumentException();
+
+            todoItems = todoItems.Where<Todo>(todo => !todo.Equals(todoItem)).ToArray();
+        }
+
     }
 }

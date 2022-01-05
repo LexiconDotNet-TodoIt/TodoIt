@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 using Xunit;
 
@@ -125,5 +123,27 @@ namespace TodoIt.Test
 
             Assert.Equal(3, unassigned.Length);
         }
+
+        [Fact]
+        public void TestRemoveTodoItems()
+        {
+            object objectToFind = null;
+            string itemToFind = "find"; 
+
+            todoItems1.AddTodo(itemToFind);
+            Todo todoToRemove = todoItems1.FindAll().Last();
+            objectToFind = todoToRemove;
+
+            todoItems1.Remove(objectToFind);
+
+            Assert.Throws<Exception>(() => todoItems1.FindById(todoToRemove.TodoId));
+
+        }
+        [Fact]
+        public void TestRemoveTodoItemThrowsException()
+        {
+            Assert.Throws<ArgumentException>(() => todoItems2.Remove(null));
+        }
+
     }
 }
