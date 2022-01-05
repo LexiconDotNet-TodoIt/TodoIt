@@ -10,6 +10,7 @@ namespace TodoIt.Test
         {
             PersonSequencer.Reset();
             people = new People();
+            people.Clear();
 
         }
 
