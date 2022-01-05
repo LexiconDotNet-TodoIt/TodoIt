@@ -67,5 +67,17 @@ namespace TodoIt.Test
             }
         }
 
+        [Theory]
+        [InlineData(5, 3)]
+        [InlineData(10, 7)]
+        public void TestPeopleRemovePerson(int iterations, int personToRemoveId)
+        {
+            AddPersonsToPeople(people, iterations);
+            people.RemovePerson(personToRemoveId);
+
+            Person person = people.FindById(personToRemoveId);
+
+            Assert.Null(person);
+        }
     }
 }
