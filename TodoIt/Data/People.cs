@@ -49,7 +49,22 @@ namespace TodoIt
 
         public void RemovePerson(Person personToRemove)
         {
-            people = people.Where(person => person != personToRemove).ToArray();
+            if (FindById(personToRemove.PersonId) != null)
+            {
+                int peopleIndexToRemove = 0;
+
+                for (int i = 0; i < Size(); i++)
+                {
+                    if (people[i] == personToRemove)
+                    {
+                        peopleIndexToRemove = i;
+                    }
+                }
+
+                people[peopleIndexToRemove] = people[Size() - 1];
+
+                Array.Resize(ref people, Size() - 1);
+            }
         }
     }
 }
