@@ -71,16 +71,6 @@ namespace TodoIt
 
                 people = newPeopleArray;
             }
-
-
-            /*
-             Add the following to TodoItems AND People class.
-a. Functionality to remove object from array. (not nulling)
-First: you need to find the correct array index of the object.
-Second: You need to rebuild array by excluding the object on found index.
-b. Unit test changes
-c. Commit and Push to GitHub
-             */
         }
     }
 }
