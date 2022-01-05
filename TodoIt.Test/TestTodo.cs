@@ -1,5 +1,4 @@
-﻿using TodoIt;
-using Xunit;
+﻿using Xunit;
 
 namespace TodoIt.Test
 {

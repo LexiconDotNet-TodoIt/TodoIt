@@ -99,7 +99,6 @@ namespace TodoIt
             todoItems[itemIndexToRemove] = todoItems[Size() - 1];
 
             Array.Resize(ref todoItems, Size() - 1);
-
         }
     }
 }
