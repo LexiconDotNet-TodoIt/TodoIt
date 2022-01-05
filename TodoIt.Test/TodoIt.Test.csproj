@@ -22,5 +22,11 @@
   <ItemGroup>
     <ProjectReference Include="..\TodoIt\TodoIt.csproj" />
   </ItemGroup>
+	
+	<ItemGroup>
+	    <None Update="xunit.runner.json">
+		    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    </None>
+    </ItemGroup>
 
 </Project>
