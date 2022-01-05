@@ -47,9 +47,9 @@ namespace TodoIt
             people = new Person[0];
         }
 
-        public void RemovePerson(int personId)
+        public void RemovePerson(Person personToRemove)
         {
-            people = people.Where(person => person.PersonId != personId).ToArray();
+            people = people.Where(person => person != personToRemove).ToArray();
         }
     }
 }

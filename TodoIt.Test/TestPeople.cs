@@ -10,6 +10,7 @@ namespace TodoIt.Test
         {
             PersonSequencer.Reset();
             people = new People();
+            people.Clear();
 
         }
 
@@ -73,7 +74,7 @@ namespace TodoIt.Test
         public void TestPeopleRemovePerson(int iterations, int personToRemoveId)
         {
             AddPersonsToPeople(people, iterations);
-            people.RemovePerson(personToRemoveId);
+            people.RemovePerson(people.FindById(personToRemoveId));
 
             Person person = people.FindById(personToRemoveId);
 
