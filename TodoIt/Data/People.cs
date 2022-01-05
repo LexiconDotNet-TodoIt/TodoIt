@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace TodoIt
 {
@@ -51,7 +52,6 @@ namespace TodoIt
             if (FindById(personToRemove.PersonId) != null)
             {
                 int peopleIndexToRemove = 0;
-                Person[] newPeopleArray = new Person[0];
 
                 for (int i = 0; i < Size(); i++)
                 {
@@ -61,15 +61,9 @@ namespace TodoIt
                     }
                 }
 
-                for (int i = 0; i < Size(); i++)
-                {
-                    if (i != peopleIndexToRemove)
-                    {
-                        newPeopleArray.Append(people[i]).ToArray();
-                    }
-                }
+                people[peopleIndexToRemove] = people[Size() - 1];
 
-                people = newPeopleArray;
+                Array.Resize(ref people, Size() - 1);
             }
         }
     }
