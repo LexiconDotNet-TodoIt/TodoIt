@@ -82,7 +82,7 @@ namespace TodoIt
             return todos;
         }
 
-        public void Remove(object itemToRemove)
+        public void Remove(Todo itemToRemove)
         {
             int itemIndexToRemove = 0;
 
