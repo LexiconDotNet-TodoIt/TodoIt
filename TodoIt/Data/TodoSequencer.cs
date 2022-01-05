@@ -2,16 +2,16 @@
 {
     public class TodoSequencer
     {
-		private static int todoId = 0;
+        private static int todoId = 0;
 
-		public static int NextTodoId()
-		{
-			return todoId++;
-		}
+        public static int NextTodoId()
+        {
+            return todoId++;
+        }
 
-		public static void Reset()
-		{
-			todoId = 0;
-		}
-	}
+        public static void Reset()
+        {
+            todoId = 0;
+        }
+    }
 }

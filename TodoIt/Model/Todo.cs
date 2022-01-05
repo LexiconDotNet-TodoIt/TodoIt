@@ -13,12 +13,14 @@
             this.description = description;
         }
 
-        public int TodoId {
+        public int TodoId
+        {
             get { return todoId; }
         }
 
-        public string Decription { 
-            get { return description; } 
+        public string Decription
+        {
+            get { return description; }
         }
 
         public bool Done

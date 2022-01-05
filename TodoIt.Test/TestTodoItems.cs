@@ -4,7 +4,6 @@ using Xunit;
 
 namespace TodoIt.Test
 {
-    [Collection("Sequential")]
     public class TestTodoItems : IDisposable
     {
         private readonly TodoItems todoItems1;
@@ -15,7 +14,7 @@ namespace TodoIt.Test
         public TestTodoItems()
         {
             TodoSequencer.Reset();
-            
+
             todoItems1 = new TodoItems();
             todoItems2 = new TodoItems();
 
@@ -35,7 +34,7 @@ namespace TodoIt.Test
             todoItems1.FindById(2).Assignee = people.FindById(1);
         }
 
-        public void Dispose() 
+        public void Dispose()
         {
             people.Clear();
             PersonSequencer.Reset();
@@ -127,11 +126,11 @@ namespace TodoIt.Test
         [Fact]
         public void TestRemoveTodoItems()
         {
-            string itemToFind = "find"; 
+            string itemToFind = "find";
 
             todoItems1.AddTodo(itemToFind);
             Todo todoToRemove = todoItems1.FindAll().Last();
-            
+
             todoItems1.Remove(todoToRemove);
 
             Assert.Throws<Exception>(() => todoItems1.FindById(todoToRemove.TodoId));
