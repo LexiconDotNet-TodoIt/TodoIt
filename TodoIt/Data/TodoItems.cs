@@ -82,13 +82,28 @@ namespace TodoIt
             return todos;
         }
 
-        public void Remove(object todoItem) 
+        public void Remove(Todo itemToRemove)
         {
-            if (todoItem == null)
+            int itemIndexToRemove = 0;
+
+            if (itemToRemove == null)
                 throw new ArgumentException();
 
-            todoItems = todoItems.Where<Todo>(todo => !todo.Equals(todoItem)).ToArray();
-        }
+            for (int i = 0; i < Size(); i++)
+            {
+                if (todoItems[i] == itemToRemove)
+                {
+                    itemIndexToRemove = i;
+                }
+            }
+            todoItems[itemIndexToRemove] = todoItems[Size() - 1];
 
+            Array.Resize(ref todoItems, Size() - 1);
+
+        }
     }
 }
+
+
+
+
