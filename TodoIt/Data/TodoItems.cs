@@ -37,5 +37,49 @@ namespace TodoIt
         {
             todoItems = new Todo[0];
         }
+
+        public Todo[] FindByDoneStatus(bool doneStatus)
+        {
+            Todo[] todos = new Todo[0];
+
+            foreach (Todo todo in todoItems)
+                if (todo.Done == doneStatus)
+                    todos = todos.Append<Todo>(todo).ToArray();
+
+            return todos;
+        }
+
+        public Todo[] FindByAssignee(int personId)
+        {
+            Todo[] todos = new Todo[0];
+
+            foreach (Todo todo in todoItems)
+                if (todo.Assignee != null && todo.Assignee.PersonId == personId)
+                    todos = todos.Append<Todo>(todo).ToArray();
+
+            return todos;
+        }
+
+        public Todo[] FindByAssignee(Person assignee)
+        {
+            Todo[] todos = new Todo[0];
+
+            foreach (Todo todo in todoItems)
+                if (todo.Assignee != null && Equals(todo.Assignee, assignee))
+                    todos = todos.Append<Todo>(todo).ToArray();
+
+            return todos;
+        }
+
+        public Todo[] FindUnassignedTodoItems()
+        {
+            Todo[] todos = new Todo[0];
+
+            foreach (Todo todo in todoItems)
+                if (todo.Assignee != null)
+                    todos = todos.Append<Todo>(todo).ToArray();
+
+            return todos;
+        }
     }
 }
