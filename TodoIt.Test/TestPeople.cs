@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace TodoIt.Test
 {
@@ -55,6 +56,12 @@ namespace TodoIt.Test
             }
         }
 
+        [Fact]
+        public void TestFindByIdThrowsException()
+        {
+            Assert.Throws<Exception>(() => people.FindById(100));
+        }
+
         [Theory]
         [InlineData(2)]
         public void TestPeopleCreatePerson(int iterations)
@@ -76,9 +83,7 @@ namespace TodoIt.Test
             AddPersonsToPeople(people, iterations);
             people.RemovePerson(people.FindById(personToRemoveId));
 
-            Person person = people.FindById(personToRemoveId);
-
-            Assert.Null(person);
+            Assert.Throws<Exception>(() => people.FindById(personToRemoveId));
         }
     }
 }
