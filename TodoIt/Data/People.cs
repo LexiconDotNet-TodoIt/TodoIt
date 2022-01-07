@@ -27,7 +27,7 @@ namespace TodoIt
                 }
             }
 
-            return null;
+            throw new Exception("No Person with that Id found.");
         }
 
         public Person CreatePerson(string firstName, string lastName)
